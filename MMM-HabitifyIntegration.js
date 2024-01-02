@@ -1,24 +1,9 @@
 
-
 Module.register( "WWW-HabitifyIntegration" , {
 
   defaults: {
-    text: "Hello World",
+    text: "Hello Carlos",
   }, 
-
-  getDom: function () {
-
-    var wrapper = document.createElement("div");
-
-    if (!this.loaded)
-    {
-      wrapper.innerHTML = "Loading...";
-      return wrapper;
-    }
-
-    wrapper.innerHTML = this.config.text; 
-    return wrapper;
-  },
 
   loaded: function(callback) {
     this.finishLoading();
@@ -27,23 +12,17 @@ Module.register( "WWW-HabitifyIntegration" , {
   },
 
   start: function() {
-    var self = this;
     Log.log(this.name + ' is started!');
 
-    // update self!
-    setInterval(function(){
-      self.updateDom(2000);
-    }, 60000)
+    var self = this;
+    setInterval(function() {
+      self.updateDom(); // no speed defined, so it updates instantly.
+    }, 1000); //perform every 1000 milliseconds.
 
   },
 
   getScripts: function() {
-    // to load other scripts, define here
     return [
-      // 'script.js', // will try to load it from the vendor folder, otherwise it will load is from the module folder.
-      // 'moment.js', // this file is available in the vendor folder, so it doesn't need to be available in the module folder.
-      // this.file('anotherfile.js'), // this file will be loaded straight from the module folder.
-      // 'https://code.jquery.com/jquery-2.2.3.min.js',  // this file will be loaded from the jquery servers.
     ]
   },
 
@@ -65,6 +44,24 @@ Module.register( "WWW-HabitifyIntegration" , {
       Log.log(this.name + " received a system notification: " + notification);
     }
   },
+
+  socketNotificationReceived: function(notification, payload) {
+    Log.log(this.name + " received a socket notification: " + notification + " - Payload: " + payload);
+  },
+
+  getDom: function () {
+
+    var wrapper = document.createElement("div");
+
+    if (!this.loaded)
+    {
+      wrapper.innerHTML = "Loading...";
+      return wrapper;
+    }
+
+    wrapper.innerHTML = this.config.text; 
+    return wrapper;
+  }
 
 
 });
