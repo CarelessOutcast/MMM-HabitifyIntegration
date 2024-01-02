@@ -1,6 +1,6 @@
 
 
-Module.register("WWW-HabitifyIntegration", {
+Module.register( "WWW-HabitifyIntegration" , {
 
   defaults: {
     text: "Hello World",
@@ -22,6 +22,7 @@ Module.register("WWW-HabitifyIntegration", {
     // runs on startup!
     this.mySpecialProperty = "So much wow!";
     Log.log(this.name + ' is started!');
+    Log.log(this.mySpecialProperty + ' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ');
 
     // update self!
     var self = this;
