@@ -7,7 +7,15 @@ Module.register( "WWW-HabitifyIntegration" , {
   }, 
 
   getDom: function () {
+
     var wrapper = document.createElement("div");
+
+    if (!this.loaded)
+    {
+      wrapper.innerHTML = "Loading...";
+      return wrapper;
+    }
+
     wrapper.innerHTML = this.config.text; 
     return wrapper;
   },
@@ -19,22 +27,14 @@ Module.register( "WWW-HabitifyIntegration" , {
   },
 
   start: function() {
-    // runs on startup!
-    this.mySpecialProperty = "So much wow!";
+    var self = this;
     Log.log(this.name + ' is started!');
-    Log.log(this.mySpecialProperty + ' !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ');
 
     // update self!
-    var self = this;
     setInterval(function(){
       self.updateDom(2000);
     }, 60000)
 
-    // talk to other modules
-    // this.sendNotification("HABITIFYINTEGRATION_READY_FOR_ACTION", { foo: bar });
-
-    // talk to node_helper
-    // this.sendSocketNotification("SET_CONFIG", this.config); 
   },
 
   getScripts: function() {
